@@ -51,6 +51,9 @@ const generateThreadSummary = (
 };
 
 const generateNotifyMessage = (mailSummary: string[]): string => {
+    if (!mailSummary.length) {
+        return '\n未読メールはありません☀️';
+    }
     const summaryStr = mailSummary.join('\n');
     return `\n未読メールが${mailSummary.length}件あります。\n${summaryStr}`;
 };
@@ -68,8 +71,6 @@ const sendToLine = (message: string) => {
 function main() {
     const messages = fetchMessages();
     const mailSummary = generateMailSummary(messages);
-    if (!mailSummary.length) return;
-
     const notifyMessage = generateNotifyMessage(mailSummary);
     sendToLine(notifyMessage);
 }
