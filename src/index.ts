@@ -20,4 +20,16 @@ const fetchMessages = (): GoogleAppsScript.Gmail.GmailMessage[][] => {
     return messages;
 };
 
+const generateMailSummary = (
+    originalMessages: GoogleAppsScript.Gmail.GmailMessage[][],
+): string[] => {
+    return originalMessages.map((m, i) => {
+        const firstMessage = m[0];
+        const date = firstMessage.getDate();
+        const dateStr = `${date.getMonth()} / ${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+        const subject = firstMessage.getSubject();
+        return `${i}. ${subject} [${dateStr}]`;
+    });
+};
+
 function main() {}
