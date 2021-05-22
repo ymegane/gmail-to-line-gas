@@ -55,7 +55,7 @@ const generateNotifyMessage = (mailSummary: string[]): string => {
         return '\n未読メールはありません☀️';
     }
     const summaryStr = mailSummary.join('\n');
-    return `\n未読メールが${mailSummary.length}件あります。\n${summaryStr}`;
+    return `\n未読メールが${mailSummary.length}件あります👀\n${summaryStr}`;
 };
 
 const sendToLine = (message: string) => {
