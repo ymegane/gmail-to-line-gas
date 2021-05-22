@@ -13,7 +13,7 @@ const intervalMinute = 60 * 24 * 7; // 1week
 const fetchMessages = (): GoogleAppsScript.Gmail.GmailMessage[][] => {
     const currentTime = Math.floor(new Date().getTime() / 1000);
     const timeTerm = currentTime - 60 * intervalMinute;
-    const query = `is:unread after:${timeTerm}`;
+    const query = `is:unread in:inbox after:${timeTerm}`;
 
     const threads = GmailApp.search(query);
     const messages = GmailApp.getMessagesForThreads(threads);
