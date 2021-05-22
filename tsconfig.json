@@ -1,0 +1,8 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "experimentalDecorators": true
+  },
+  "include": ["./src/*.ts"]
+}
