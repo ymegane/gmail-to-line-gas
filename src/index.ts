@@ -37,4 +37,14 @@ const generateNotifyMessage = (mailSummary: string[]): string => {
     return `未読メールがあります。\n${summaryStr}`;
 };
 
+const sendToLine = (message: string) => {
+    const payload = { message };
+    const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+        method: 'post',
+        payload,
+        headers: { Authorization: `Bearer ${appEnvironments.lineToken}` },
+    };
+    UrlFetchApp.fetch('https://notify-api.line.me/api/notify', options);
+};
+
 function main() {}
