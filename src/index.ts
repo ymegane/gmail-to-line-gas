@@ -47,4 +47,11 @@ const sendToLine = (message: string) => {
     UrlFetchApp.fetch('https://notify-api.line.me/api/notify', options);
 };
 
-function main() {}
+function main() {
+    const messages = fetchMessages();
+    const mailSummary = generateMailSummary(messages);
+    if (!mailSummary.length) return;
+
+    const notifyMessage = generateNotifyMessage(mailSummary);
+    sendToLine(notifyMessage);
+}
