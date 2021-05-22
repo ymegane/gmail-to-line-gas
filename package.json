@@ -1,0 +1,11 @@
+{
+  "name": "gmail-line-notifier",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "ymegane <crybaby.sumire+github@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.33"
+  }
+}
