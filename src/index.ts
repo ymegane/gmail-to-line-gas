@@ -32,4 +32,9 @@ const generateMailSummary = (
     });
 };
 
+const generateNotifyMessage = (mailSummary: string[]): string => {
+    const summaryStr = mailSummary.join('\n');
+    return `未読メールがあります。\n${summaryStr}`;
+};
+
 function main() {}
