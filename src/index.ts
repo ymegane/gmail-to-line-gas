@@ -8,7 +8,7 @@ const appEnvironments: Environments = {
     lineToken: properties.getProperty('LINE_TOKEN'),
 };
 
-const intervalMinute = 60; // 1時間
+const intervalMinute = 60 * 24 * 7; // 1week
 
 const fetchMessages = (): GoogleAppsScript.Gmail.GmailMessage[][] => {
     const currentTime = Math.floor(new Date().getTime() / 1000);
