@@ -23,20 +23,36 @@ const fetchMessages = (): GoogleAppsScript.Gmail.GmailMessage[][] => {
 const generateMailSummary = (
     originalMessages: GoogleAppsScript.Gmail.GmailMessage[][],
 ): string[] => {
-    return originalMessages.map((m, i) => {
-        const firstMessage = m[0];
-        const date = firstMessage.getDate();
+    let currentIndex = 0;
+    return originalMessages.reduce((current, messages, i) => {
+        const unradMessages = messages.filter((m) => m.isUnread());
+        const threadSummary = generateThreadSummary(
+            currentIndex,
+            unradMessages,
+        );
+        currentIndex += threadSummary.length;
+        return current.concat(threadSummary);
+    }, [] as string[]);
+};
+
+const generateThreadSummary = (
+    parent: number,
+    thread: GoogleAppsScript.Gmail.GmailMessage[],
+): string[] => {
+    return thread.map((m, i) => {
+        const date = m.getDate();
         const dateStr = `${
             date.getMonth() + 1
         }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
-        const subject = firstMessage.getSubject();
-        return `${i + 1}. ${subject} [${dateStr}]`;
+        const subject = m.getSubject();
+        const index = parent + i + 1;
+        return `${index}. ${subject} [${dateStr}]`;
     });
 };
 
 const generateNotifyMessage = (mailSummary: string[]): string => {
     const summaryStr = mailSummary.join('\n');
-    return `\n未読スレッドが${mailSummary.length}件あります。\n${summaryStr}`;
+    return `\n未読メールが${mailSummary.length}件あります。\n${summaryStr}`;
 };
 
 const sendToLine = (message: string) => {
