@@ -26,15 +26,17 @@ const generateMailSummary = (
     return originalMessages.map((m, i) => {
         const firstMessage = m[0];
         const date = firstMessage.getDate();
-        const dateStr = `${date.getMonth()} / ${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+        const dateStr = `${
+            date.getMonth() + 1
+        }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
         const subject = firstMessage.getSubject();
-        return `${i}. ${subject} [${dateStr}]`;
+        return `${i + 1}. ${subject} [${dateStr}]`;
     });
 };
 
 const generateNotifyMessage = (mailSummary: string[]): string => {
     const summaryStr = mailSummary.join('\n');
-    return `未読メールがあります。\n${summaryStr}`;
+    return `\n未読スレッドが${mailSummary.length}件あります。\n${summaryStr}`;
 };
 
 const sendToLine = (message: string) => {
