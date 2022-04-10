@@ -5,6 +5,7 @@
     "target": "ES2019",
     "experimentalDecorators": true,
     "types": ["google-apps-script"],
+    "strict": true,
   },
   "include": ["./src/*.ts"]
 }
