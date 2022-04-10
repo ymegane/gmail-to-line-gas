@@ -4,6 +4,7 @@
     "lib": ["esnext"],
     "target": "ES2019",
     "experimentalDecorators": true,
+    "types": ["google-apps-script"],
   },
   "include": ["./src/*.ts"]
 }
