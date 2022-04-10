@@ -1,5 +1,5 @@
 type Environments = {
-    lineToken: string;
+    lineToken: string | null;
 };
 
 const properties = PropertiesService.getScriptProperties();
