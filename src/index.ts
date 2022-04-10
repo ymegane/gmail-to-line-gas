@@ -10,6 +10,11 @@ const appEnvironments: Environments = {
 
 const intervalMinute = 60 * 24 * 7; // 1week
 
+const validateEnvironments = () => {
+    const { lineToken } = appEnvironments;
+    if (!lineToken) throw Error('should set lineToken');
+};
+
 const fetchMessages = (): GoogleAppsScript.Gmail.GmailMessage[][] => {
     const currentTime = Math.floor(new Date().getTime() / 1000);
     const timeTerm = currentTime - 60 * intervalMinute;
@@ -67,6 +72,8 @@ const sendToLine = (message: string) => {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function main() {
+    validateEnvironments();
+
     const messages = fetchMessages();
     const mailSummary = generateMailSummary(messages);
     if (!mailSummary.length) return;
