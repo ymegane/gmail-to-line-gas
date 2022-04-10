@@ -24,7 +24,7 @@ const generateMailSummary = (
     originalMessages: GoogleAppsScript.Gmail.GmailMessage[][],
 ): string[] => {
     let currentIndex = 0;
-    return originalMessages.reduce((current, messages, i) => {
+    return originalMessages.reduce((current, messages) => {
         const unradMessages = messages.filter((m) => m.isUnread());
         const threadSummary = generateThreadSummary(
             currentIndex,
@@ -68,6 +68,7 @@ const sendToLine = (message: string) => {
     UrlFetchApp.fetch('https://notify-api.line.me/api/notify', options);
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function main() {
     const messages = fetchMessages();
     const mailSummary = generateMailSummary(messages);
