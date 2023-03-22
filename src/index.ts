@@ -30,10 +30,10 @@ const generateMailSummary = (
 ): string[] => {
     let currentIndex = 0;
     return originalMessages.reduce((current, messages) => {
-        const unradMessages = messages.filter((m) => m.isUnread());
+        const unreadMessages = messages.filter((m) => m.isUnread());
         const threadSummary = generateThreadSummary(
             currentIndex,
-            unradMessages,
+            unreadMessages,
         );
         currentIndex += threadSummary.length;
         return current.concat(threadSummary);
