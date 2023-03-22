@@ -11,8 +11,8 @@
     "push": "yarn clasp push"
   },
   "devDependencies": {
-    "@google/clasp": "^2.3.2",
-    "@types/google-apps-script": "^1.0.33",
+    "@google/clasp": "^2.4.2",
+    "@types/google-apps-script": "^1.0.59",
     "@types/prettier": "^2.6.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
